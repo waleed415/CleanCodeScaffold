@@ -21,6 +21,37 @@ Clone this repository.
 Install the required dependencies using .NET CLI or your preferred package manager.
 Customize the domain-specific logic in the Application Layer.
 Run the application and start building your features on top of the clean architecture foundation.
+
 **Contributing**:
 
 Contributions are welcome! Feel free to fork this repository, open issues, and submit pull requests to help improve the CleanCodeScaffold project.
+
+CleanCodeScaffold
+│
+├───src
+│   │
+│   ├───CleanCodeScaffold.Application         (Application Layer)
+│   │   ├───Commands                         (Use Case Commands)
+│   │   ├───Queries                          (Use Case Queries)
+│   │   ├───Services                         (Application Services)
+│   │   ├───Mappers                          (Data Mappers)
+│   │   ├───Responses                         (Response Models)
+│   │   └───Authenticators                   (Authentication Logic)
+│   │
+│   ├───CleanCodeScaffold.Domain             (Domain Layer)
+│   │   ├───Entities                         (Domain Entities)
+│   │   ├───ValueObjects                     (Domain Value Objects)
+│   │   └───Interfaces                        (Domain Interfaces)
+│   │
+│   ├───CleanCodeScaffold.Infrastructure     (Infrastructure Layer)
+│   │   ├───Persistence                      (Database Access, Repositories)
+│   │   ├───ExternalServices                  (External APIs, Third-party Services)
+│   │   └───Messaging                         (Message Brokers, Email Services)
+│   │
+│   └───CleanCodeScaffold.Api                (Presentation Layer - API)
+│       ├───Controllers                      (API Endpoints)
+│       ├───Util                              (Utility classes, helpers, etc.)
+│       └───Program.cs                        (API Entry Point)
+│
+└───tools
+    └───build 
