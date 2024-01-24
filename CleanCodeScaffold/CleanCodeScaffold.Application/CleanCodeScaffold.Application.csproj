@@ -7,11 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <Compile Remove="Queries\**" />
+    <Compile Remove="Response\**" />
+    <EmbeddedResource Remove="Queries\**" />
+    <EmbeddedResource Remove="Response\**" />
+    <None Remove="Queries\**" />
+    <None Remove="Response\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Authenticators\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Response\" />
-    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CleanCodeScaffold.Domain\CleanCodeScaffold.Domain.csproj" />
+    <ProjectReference Include="..\CleanCodeScaffold.Infrastructure\CleanCodeScaffold.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

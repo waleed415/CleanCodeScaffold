@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\git\\CleanCodeScaffold\\CleanCodeScaffold.Application\\CleanCodeScaffold.Application.csproj": {}
+    "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Application\\CleanCodeScaffold.Application.csproj": {}
   },
   "projects": {
-    "E:\\git\\CleanCodeScaffold\\CleanCodeScaffold.Application\\CleanCodeScaffold.Application.csproj": {
+    "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Application\\CleanCodeScaffold.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\git\\CleanCodeScaffold\\CleanCodeScaffold.Application\\CleanCodeScaffold.Application.csproj",
+        "projectUniqueName": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Application\\CleanCodeScaffold.Application.csproj",
         "projectName": "CleanCodeScaffold.Application",
-        "projectPath": "E:\\git\\CleanCodeScaffold\\CleanCodeScaffold.Application\\CleanCodeScaffold.Application.csproj",
-        "packagesPath": "C:\\Users\\Coues\\.nuget\\packages\\",
-        "outputPath": "E:\\git\\CleanCodeScaffold\\CleanCodeScaffold.Application\\obj\\",
+        "projectPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Application\\CleanCodeScaffold.Application.csproj",
+        "packagesPath": "C:\\Users\\waleed.rehaman\\.nuget\\packages\\",
+        "outputPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Coues\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\waleed.rehaman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,16 +22,19 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/v3/index.json": {},
-          "https://ob.pkgs.visualstudio.com/Contoworks-Common/_packaging/Default/nuget/v3/index.json": {},
-          "https://ob.pkgs.visualstudio.com/Contoworks-Common/_packaging/Telerik%40Local/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Domain\\CleanCodeScaffold.Domain.csproj": {
+                "projectPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Domain\\CleanCodeScaffold.Domain.csproj"
+              },
+              "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Infrastructure\\CleanCodeScaffold.Infrastructure.csproj": {
+                "projectPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Infrastructure\\CleanCodeScaffold.Infrastructure.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -47,6 +46,20 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -63,7 +76,159 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Domain\\CleanCodeScaffold.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Domain\\CleanCodeScaffold.Domain.csproj",
+        "projectName": "CleanCodeScaffold.Domain",
+        "projectPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Domain\\CleanCodeScaffold.Domain.csproj",
+        "packagesPath": "C:\\Users\\waleed.rehaman\\.nuget\\packages\\",
+        "outputPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\waleed.rehaman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.26, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Infrastructure\\CleanCodeScaffold.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Infrastructure\\CleanCodeScaffold.Infrastructure.csproj",
+        "projectName": "CleanCodeScaffold.Infrastructure",
+        "projectPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Infrastructure\\CleanCodeScaffold.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\waleed.rehaman\\.nuget\\packages\\",
+        "outputPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\waleed.rehaman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Domain\\CleanCodeScaffold.Domain.csproj": {
+                "projectPath": "D:\\myCode\\CleanCodeScaffold\\CleanCodeScaffold.Domain\\CleanCodeScaffold.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.26, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.15, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
