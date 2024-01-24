@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.SetupApplication(builder.Configuration.GetConnectionString("default"));
+builder.Services.SetupApplication(builder.Configuration.GetConnectionString("default"), builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 

@@ -9,5 +9,10 @@ namespace CleanCodeScaffold.Domain.Entities
 {
     public class User : IdentityUser<int>
     {
+        public User()
+        {
+            RefreshToken = string.Empty;
+        }
+        public string RefreshToken { get; set; }
     }
 }
