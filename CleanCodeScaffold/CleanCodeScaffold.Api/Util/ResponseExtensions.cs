@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CleanCodeScaffold.Api.Util
 {
-    public static class ResponseExtentions
+    public static class ResponseExtensions
     {
         public static IActionResult ToResponse<T>(this Response<T> response)
         {

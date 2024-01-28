@@ -16,7 +16,7 @@ namespace CleanCodeScaffold.Infrastructure.AuditServices
         }
         public long GetLoggedInUserId()
         {
-            var claim = _context.HttpContext?.User.Claims.FirstOrDefault(x => x.Type.ToLower().Equals("customid"));
+            var claim = _context.HttpContext?.User.Claims.FirstOrDefault(x => x.Type.ToLower().Equals("id"));
             string id = claim == null ? "0" : claim.Value;
             return Convert.ToInt64(id);
         }

@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace CleanCodeScaffold.Domain.Entities
 {
-    public class Role : IdentityRole<long>
+    public class UserToken : IdentityUserToken<long>
     {
+        public int TokenTries { get; set; }
+        public DateTime ExpiredDateTimeUTC { get; set; }
     }
 }
