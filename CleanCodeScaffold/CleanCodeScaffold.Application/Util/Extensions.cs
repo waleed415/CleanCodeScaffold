@@ -2,6 +2,7 @@
 using CleanCodeScaffold.Application.Dtos;
 using CleanCodeScaffold.Domain.Entities;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,8 @@ namespace CleanCodeScaffold.Application.Util
             pager.PageData = mapper.Map<List<T>>(vmData);
             return pager;
         }
+
+       
 
     }
 }

@@ -15,8 +15,10 @@
     "connectionString": {
       "type": "parameter",
       "datatype": "string",
+      "displayName": "Connection String",
       "description": "Enter the connection string for your database:",
-      "defaultValue": "Your_Default_Connection_String"
+      "defaultValue": "Data Source=local;Initial Catalog=CleanCodeDB;Integrated Security=True;TrustServerCertificate=True",
+      "isRequired": true
     }
   },
   "targets": {

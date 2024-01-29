@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace CleanCodeScaffold.Application.Util
@@ -78,6 +80,17 @@ namespace CleanCodeScaffold.Application.Util
         });
 
 
+        }
+
+        public static async Task<IApplicationBuilder> ApplyPendingMigrations(this IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<AppDBContext>(); // Replace with your DbContext
+                await dbContext.Database.MigrateAsync();
+            }
+
+            return app;
         }
     }
 }

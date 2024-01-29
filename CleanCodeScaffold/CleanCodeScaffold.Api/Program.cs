@@ -1,9 +1,16 @@
 using CleanCodeScaffold.Application.Util;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.UseSerilog((context, logConfigs) =>
+{
+    logConfigs.ReadFrom.Configuration(new ConfigurationBuilder()
+    .AddJsonFile("seri-log.json")
+    .Build());
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -50,6 +57,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+await app.ApplyPendingMigrations();
+app.UseSerilogRequestLogging();
 
 app.MapControllers();
 
