@@ -5,13 +5,13 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanCodeScaffold.Api", "CleanCodeScaffold.Api\CleanCodeScaffold.Api.csproj", "{ADE1C757-9D83-400C-82E0-61B5F0CF600D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CFABB39D-C043-4829-8821-1BBCBDBF38EA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanCodeScaffold.Application", "CleanCodeScaffold.Application\CleanCodeScaffold.Application.csproj", "{50D2BD15-D469-485C-92E8-376B72DCBD1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeScaffold.Domain", "CleanCodeScaffold.Domain\CleanCodeScaffold.Domain.csproj", "{B974FB7E-D616-434E-A2AE-329BFCDCE7D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanCodeScaffold.Domain", "CleanCodeScaffold.Domain\CleanCodeScaffold.Domain.csproj", "{B974FB7E-D616-434E-A2AE-329BFCDCE7D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeScaffold.Infrastructure", "CleanCodeScaffold.Infrastructure\CleanCodeScaffold.Infrastructure.csproj", "{95EFE60E-AF0A-41B5-8D5C-33C4D79EE849}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanCodeScaffold.Infrastructure", "CleanCodeScaffold.Infrastructure\CleanCodeScaffold.Infrastructure.csproj", "{95EFE60E-AF0A-41B5-8D5C-33C4D79EE849}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A3052DE8-3871-4DFA-BD50-FFEF380C13CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +40,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{ADE1C757-9D83-400C-82E0-61B5F0CF600D} = {CFABB39D-C043-4829-8821-1BBCBDBF38EA}
-		{50D2BD15-D469-485C-92E8-376B72DCBD1C} = {CFABB39D-C043-4829-8821-1BBCBDBF38EA}
-		{B974FB7E-D616-434E-A2AE-329BFCDCE7D8} = {CFABB39D-C043-4829-8821-1BBCBDBF38EA}
-		{95EFE60E-AF0A-41B5-8D5C-33C4D79EE849} = {CFABB39D-C043-4829-8821-1BBCBDBF38EA}
+		{ADE1C757-9D83-400C-82E0-61B5F0CF600D} = {A3052DE8-3871-4DFA-BD50-FFEF380C13CE}
+		{50D2BD15-D469-485C-92E8-376B72DCBD1C} = {A3052DE8-3871-4DFA-BD50-FFEF380C13CE}
+		{B974FB7E-D616-434E-A2AE-329BFCDCE7D8} = {A3052DE8-3871-4DFA-BD50-FFEF380C13CE}
+		{95EFE60E-AF0A-41B5-8D5C-33C4D79EE849} = {A3052DE8-3871-4DFA-BD50-FFEF380C13CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1407BE0A-173E-461E-8ABA-7182740C900C}
