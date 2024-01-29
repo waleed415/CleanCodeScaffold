@@ -1,0 +1,22 @@
+{
+  "Serilog": {
+    "using": [ "Serilog.Sinks.Console", "Serilog.Sinks.Seq" ],
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": { "Microsoft" : "Information"}
+    },
+    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
+    "WriteTo": [
+      {
+        "Name": "Console"
+      },
+      {
+        "Name": "Seq",
+        "Args": {
+          "serverUrl": "http://localhost:5341", // Replace with your Seq URL
+          "apiKey": "eNNQxgjhCzh2Oyk6lOW3" // Add your API key here
+        }
+      }
+    ]
+  }
+}

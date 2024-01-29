@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Waleed Ur Rehaman",
+  "classifications": ["Web", "Api"],
+  "name": "CleanCodeScaffold",
+  "identity": "Clean.Code.Scaffold.Template",
+  "shortName": "ccs",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "CleanCodeScaffold",
+  "preferNameDirectory": true,
+  "symbols": {
+    "connectionString": {
+      "type": "parameter",
+      "datatype": "string",
+      "displayName": "Connection String",
+      "description": "Enter the connection string for your database:",
+      "defaultValue": "Data Source=local;Initial Catalog=CleanCodeDB;Integrated Security=True;TrustServerCertificate=True",
+      "isRequired": true
+    }
+  },
+  "targets": {
+    "api": {
+      "type": "project",
+      "name": "{{sourceName}}.Api",
+      "sourceName": "src/{{sourceName}}.Api",
+      "symbols": {
+        "namespace": "{{sourceName}}.Api"
+      },
+      "language": "C#"
+    },
+    "application": {
+      "type": "project",
+      "name": "{{sourceName}}.Application",
+      "sourceName": "src/{{sourceName}}.Application",
+      "symbols": {
+        "namespace": "{{sourceName}}.Application"
+      },
+      "language": "C#"
+    },
+    "domain": {
+      "type": "project",
+      "name": "{{sourceName}}.Domain",
+      "sourceName": "src/{{sourceName}}.Domain",
+      "symbols": {
+        "namespace": "{{sourceName}}.Domain"
+      },
+      "language": "C#"
+    },
+    "infrastructure": {
+      "type": "project",
+      "name": "{{sourceName}}.Infrastructure",
+      "sourceName": "src/{{sourceName}}.Infrastructure",
+      "symbols": {
+        "namespace": "{{sourceName}}.Infrastructure"
+      },
+      "language": "C#"
+    }
+  }
+}
