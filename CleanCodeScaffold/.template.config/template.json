@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Waleed Ur Rehaman",
   "classifications": ["Web", "Api"],
-  "name": "CleanCodeScaffold::0.0.1",
+  "name": "CleanCodeScaffold",
   "identity": "Clean.Code.Scaffold.Template",
   "shortName": "Clean.Code.Scaffold",
   "tags": {
