@@ -71,5 +71,34 @@ namespace CleanCodeScaffold.Infrastructure.Persistence
         }
 
         public DbSet<Weather> Weathers { get; set; }
+
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            SetAuditFields();
+            return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        private void SetAuditFields()
+        {
+            var modifiedEntries = ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
+            foreach (var entity in modifiedEntries)
+            {
+                if (entity.Entity is BaseEntity bentity)
+                {
+                    switch (entity.State)
+                    {
+                        case EntityState.Added:
+                            bentity.CreatedBy = _currentUserService.GetLoggedInUserId();
+                            bentity.CreatedOn = DateTime.UtcNow;
+                            break;
+                        case EntityState.Modified:
+                            bentity.ModifiedBy = _currentUserService.GetLoggedInUserId();
+                            bentity.ModifiedOn = DateTime.UtcNow;
+                            break;
+                    }
+                }
+            }
+        }
     }
 }
