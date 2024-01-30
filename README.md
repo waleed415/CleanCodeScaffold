@@ -1,7 +1,5 @@
 # CleanCodeScaffold
-CleanCodeScaffold is a .NET Core project template following Clean Code Architecture. It provides generic CRUD operations, modular layers, and easy testing. Start your projects with clean, maintainable code. Contributions welcome!
-
-CleanCodeScaffold is a generic CRUD (Create, Read, Update, Delete) project template built on the principles of Clean Code Architecture. It serves as a foundation for developing robust, maintainable, and scalable .NET Core applications while emphasizing clean, modular, and testable code practices.
+CleanCodeScaffold project is a Clean Code Architecture template designed for .NET Core 6 and 8. It incorporates essential components such as Identity Framework for user management, a Generic Repository for data access, and Serilog with Seq for robust logging. Ideal for building modular, maintainable, and scalable applications following best practices in software architecture.
 
 **Key Features**:
 
@@ -17,10 +15,25 @@ CleanCodeScaffold is a generic CRUD (Create, Read, Update, Delete) project templ
 
 **Getting Started**:
 
-Clone this repository.
-Install the required dependencies using .NET CLI or your preferred package manager.
-Customize the domain-specific logic in the Application Layer.
-Run the application and start building your features on top of the clean architecture foundation.
+Choose Your Preferred Approach:
+
+**Via NuGet Package:**
+
+Install the template using the NuGet package.
+    dotnet new -i CleanCodeScaffold::1.0.0
+Create a new project with the installed template.
+    dotnet new CleanCodeScaffold -n YourNewProjectName
+Run your project.
+
+**Via Repository:**
+
+Clone the repository to your local machine.
+    git clone https://github.com/waleed415/CleanCodeScaffold.git
+Navigate to the template project within the repository.
+    cd /CleanCodeScaffold
+Install the template.
+    dotnet new -i .
+Create new project using visual studio chose CleanCodeScaffold.
 
 **Contributing**:
 
