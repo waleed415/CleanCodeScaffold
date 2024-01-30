@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>CleanCodeScaffold</id>
+    <version>1.0.0</version>
+    <authors>Waleed</authors>
+    <owners>Waleed Ur Rehman</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>CleanCodeScaffold is a .NET Core project template following Clean Code Architecture. It provides generic CRUD operations, modular layers, and easy testing. Start your projects with clean, maintainable code.</description>
+    <tags>CleanCode API Scaffold</tags>
+    <repository type="git" url="https://github.com/waleed415/CleanCodeScaffold" />
+  </metadata>
+</package>
