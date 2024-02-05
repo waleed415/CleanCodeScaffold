@@ -20,7 +20,7 @@ Choose Your Preferred Approach:
 **Via NuGet Package:**
 
 Install the template using the NuGet package.  
-    dotnet new -i CleanCodeScaffold::1.0.0  
+    dotnet new -i CleanCodeScaffold  
 Create a new project with the installed template.  
     dotnet new CleanCodeScaffold -n YourNewProjectName  
 Run your project.  
