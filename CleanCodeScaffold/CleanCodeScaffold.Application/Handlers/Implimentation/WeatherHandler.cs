@@ -15,7 +15,7 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
 {
     public class WeatherHandler : BaseHandler<WeatherVM, Weather>, IWeatherHandler
     {
-        public WeatherHandler(IWeatherRepository repo, IValidator<WeatherVM> validator) : base(repo, WeatherMapper.Mapper, validator)
+        public WeatherHandler(IWeatherRepository repo, IValidator<WeatherVM> validator, FilterValidator<WeatherVM> filterValidator) : base(repo, WeatherMapper.Mapper, validator, filterValidator)
         {
             
         }

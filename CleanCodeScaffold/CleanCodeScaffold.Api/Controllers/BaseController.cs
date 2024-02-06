@@ -1,6 +1,7 @@
 ﻿using CleanCodeScaffold.Application.Handlers.Interface;
 using Microsoft.AspNetCore.Mvc;
 using CleanCodeScaffold.Api.Util;
+using CleanCodeScaffold.Application.Dtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,9 +18,9 @@ namespace CleanCodeScaffold.Api.Controllers
         }
         // GET: api/<BaseController>
         [HttpGet]
-        public virtual async Task<IActionResult> Get(int pagesize=10, int pagenumber=1)
+        public virtual async Task<IActionResult> Get([FromQuery]int pagesize=10, [FromQuery] int pagenumber=1, [FromQuery] IEnumerable<FilterVM> filters = null)
         {
-            var res = await _handler.GetAllAsync(pagesize, pagenumber);
+            var res = await _handler.GetAllAsync(pagesize, pagenumber, filters);
             return res.ToResponse();
         }
 
