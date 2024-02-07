@@ -15,6 +15,6 @@ namespace CleanCodeScaffold.Application.Handlers.Interface
         Task<Response<TVM>> UpdateAsync(long id, TVM model);
         Task<Response<TVM>> DeleteAsync(long Id);
         Task<Response<TVM>> GetByIdAsync(long Id);
-        Task<Response<PagerModel<TVM>>> GetAllAsync(int pagesize = 10, int currentPage = 1);
+        Task<Response<PagerModel<TVM>>> GetAllAsync(int pagesize = 10, int currentPage = 1, IEnumerable<FilterVM> filters = null);
     }
 }

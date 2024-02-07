@@ -37,6 +37,7 @@ namespace CleanCodeScaffold.Application.Util
             services.AddScoped<IValidator<RegisterVM>, RegisterValidator>();
             services.AddScoped<IValidator<ChangePasswordVM>, ChangePasswordValidator>();
             services.AddScoped<IValidator<ResetPasswordVM>, ResetPasswordValidator>();
+            services.AddTransient(typeof(FilterValidator<>));
         }
         private static void SetupHandlers(this IServiceCollection services)
         {
