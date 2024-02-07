@@ -15,6 +15,6 @@ namespace CleanCodeScaffold.Domain.Interfaces
         Task<T> UpdateAsync(T model);
         Task<bool> DeleteAsync(long id);
         IQueryable<T> GetAllAsync();
-        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate);
+        IQueryable<T> GetAllAsync(Expression<Func<T, bool>> predicate);
     }
 }

@@ -1,3 +1,4 @@
+using CleanCodeScaffold.Api.Util;
 using CleanCodeScaffold.Application.Util;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
@@ -19,7 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "CleanCodeScaffold API", Version = "v1" });
-
+    c.OperationFilter<FiltersSwaggerConfigs>();
     // Add JWT Authentication
     var securityScheme = new OpenApiSecurityScheme
     {

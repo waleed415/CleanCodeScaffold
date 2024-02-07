@@ -37,9 +37,9 @@ namespace CleanCodeScaffold.Infrastructure.Persistence.Repository
         {
             return _dbSet.Where(x => x.IsActive);
         }
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate)
+        public IQueryable<T> GetAllAsync(Expression<Func<T, bool>> predicate)
         {
-            return await GetAllAsync().Where(predicate).ToListAsync();
+            return GetAllAsync().Where(predicate);
         }
 
         public async Task<T> GetByIdAsync(long id) => await _dbSet.FindAsync(id);
