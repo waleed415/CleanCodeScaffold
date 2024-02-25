@@ -58,9 +58,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 await app.ApplyPendingMigrations();
 app.UseSerilogRequestLogging();
-
+app.UseMiddleware<LocalizationMiddleware>();
 app.MapControllers();
 
 app.Run();

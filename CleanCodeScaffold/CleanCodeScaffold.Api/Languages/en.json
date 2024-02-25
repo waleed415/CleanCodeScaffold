@@ -1,0 +1,34 @@
+{
+  "global": {
+    "status": {
+      "success": "Success",
+      "error": "Error"
+    },
+    "delete": "Entity Deleted Successfully!"
+  },
+  "validations": {
+    "required": "{PropertyName} is requrid.",
+    "email": {
+      "format": "{PropertyName} is not valid email.",
+      "registerd": "Email is already registerd."
+    },
+    "filter": {
+      "key": "{PropertyName} must be a valid property in VM.",
+      "operator": "Operator '{0}' is not supported.",
+      "postOperator": "PostOperator '{0}' is not supported."
+    }
+  },
+  "messages": {
+    "user": {
+      "invalid": "Invalid user!",
+      "loginFail": "Invalid User name or passowrd!",
+      "created": "User Created Successfully!",
+      "passworChanged": "Password changed successfully!",
+      "notfound": "User not found!"
+    },
+    "token": {
+      "genrated": "Token genrated successfully",
+      "invalid": "Invalid Token!"
+    }
+  }
+}

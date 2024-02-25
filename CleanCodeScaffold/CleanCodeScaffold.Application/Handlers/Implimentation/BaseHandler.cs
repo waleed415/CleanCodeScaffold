@@ -7,12 +7,9 @@ using CleanCodeScaffold.Domain.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
 using AutoMapper.Internal;
-using CleanCodeScaffold.Application.Exceptions;
 using CleanCodeScaffold.Application.Validators;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using System.Globalization;
+using Microsoft.AspNetCore.Http;
 
 
 
@@ -24,13 +21,21 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
         protected readonly IMapper _mapper;
         protected readonly IValidator<TVM> _validator;
         protected readonly FilterValidator<TVM> _filterValidator;
+        protected readonly string _success;
+        protected readonly string _error;
+        protected IHttpContextAccessor _httpContextAccessor;
 
-        public BaseHandler(IBaseRepository<TModel> repo, IMapper mapper, IValidator<TVM> validator, FilterValidator<TVM> filterValidator)
+        public BaseHandler(IBaseRepository<TModel> repo, IMapper mapper, 
+            IValidator<TVM> validator, FilterValidator<TVM> filterValidator,
+            IHttpContextAccessor httpContextAccessor)
         {
             _repo = repo;
             _mapper = mapper;
             _validator = validator;
             _filterValidator = filterValidator;
+            _success = httpContextAccessor.GetResourceString("global.status.success");
+            _error = httpContextAccessor.GetResourceString("global.status.error");
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public virtual async Task<Response<TVM>> CreateAsync(TVM model)
@@ -43,11 +48,11 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
                 obj.IsActive = true;
                 await _repo.CreateAsync(obj);
                 response.Data = model;
-                response.Status = "Success";
+                response.Status = _success;
             }
             else
             {
-                response.Status = "Error";
+                response.Status = _error;
                 response.Message = result.ToErrorMessage();
             }
             return response;
@@ -57,14 +62,14 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
         {
             await _repo.DeleteAsync(Id);
             Response<TVM> response = new Response<TVM>();
-            response.Status = "Success";
-            response.Message.Add("Entity Deleted Successfully!");
+            response.Status = _success;
+            response.Message.Add(_httpContextAccessor.GetResourceString("global.delete"));
             return response;
         }
 
         public virtual async Task<Response<PagerModel<TVM>>> GetAllAsync(int pageSize = 10, int currentPage = 1, IEnumerable<FilterVM> filters = null)
         {
-            Response<PagerModel<TVM>> response = new Response<PagerModel<TVM>>() { Status = "Error" };
+            Response<PagerModel<TVM>> response = new Response<PagerModel<TVM>>() { Status = _error };
             IQueryable<TModel> queryable;
             if (filters == null || filters.Count() < 1)
                 queryable = _repo.GetAllAsync();
@@ -79,7 +84,7 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
                 queryable = _repo.GetAllAsync(GetFitlerPredicate(filters));
             }
             response.Data = await queryable.ToPageAsync<TVM, TModel>(pageSize, currentPage, _mapper);
-            response.Status = "Success";
+            response.Status = _success;
             return response;
         }
 
@@ -87,7 +92,7 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
         public virtual async Task<Response<TVM>> GetByIdAsync(long Id)
         {
             Response<TVM> response = new Response<TVM>();
-            response.Status = "Success";
+            response.Status = _success;
             TModel model = await _repo.GetByIdAsync(Id);
             response.Data = _mapper.Map<TVM>(model);
             return response;
@@ -103,11 +108,11 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
                 TModel obj = _mapper.Map<TModel>(model);
                 await _repo.UpdateAsync(obj);
                 response.Data = model;
-                response.Status = "Success";
+                response.Status = _success;
             }
             else
             {
-                response.Status = "Error";
+                response.Status = _error;
                 response.Message = result.ToErrorMessage();
             }
             return response;
@@ -152,7 +157,7 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
                 case "or":
                     return Expression.OrElse(left, right);
                 default:
-                    throw new NotSupportedException($"PostOperator '{postOperator}' is not supported.");
+                    throw new NotSupportedException(string.Format(_httpContextAccessor.GetResourceString("validations.filter.postOperator"), postOperator));
             }
         }
 
@@ -178,7 +183,7 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
                    return Expression.Call(left, typeof(string).GetMethod("EndsWith", new[] { typeof(string) }), right);
                 // Add more cases for other operators as needed
                 default:
-                    throw new NotSupportedException($"Operator '{@operator}' is not supported.");
+                    throw new NotSupportedException(string.Format(_httpContextAccessor.GetResourceString("validations.filter.operator"), @operator));
             }
         }
     }

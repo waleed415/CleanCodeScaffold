@@ -2,16 +2,15 @@
 using CleanCodeScaffold.Application.Dtos.Configs;
 using CleanCodeScaffold.Application.Handlers.Interface;
 using CleanCodeScaffold.Application.Util;
-using CleanCodeScaffold.Application.Validators;
 using CleanCodeScaffold.Domain.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 using System.Text;
 
@@ -25,9 +24,13 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
         private readonly IValidator<RegisterVM> _registerVmValidator;
         private readonly IValidator<ChangePasswordVM> _changePasswordVmValidator;
         private readonly IValidator<ResetPasswordVM> _resetPasswordVMValidator;
+        protected readonly string _success;
+        protected readonly string _error;
+        protected IHttpContextAccessor _httpContextAccessor;
         public UserHandler(UserManager<User> userManager, IOptions<JWTConfigs> options,
             IValidator<LoginVM> loginValidator, IValidator<RegisterVM> registerVmValidator,
-            IValidator<ChangePasswordVM> changePasswordVmValidator, IValidator<ResetPasswordVM> resetPasswordVMValidator)
+            IValidator<ChangePasswordVM> changePasswordVmValidator, IValidator<ResetPasswordVM> resetPasswordVMValidator,
+            IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _jwtConfigs = options.Value;
@@ -35,24 +38,28 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
             _registerVmValidator = registerVmValidator;
             _changePasswordVmValidator = changePasswordVmValidator;
             _resetPasswordVMValidator = resetPasswordVMValidator;
+            _success = httpContextAccessor.GetResourceString("global.status.success");
+            _error = httpContextAccessor.GetResourceString("global.status.error");
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<Response<TokenVM>> GetToken(LoginVM Model)
         {
-            Response<TokenVM> response = new Response<TokenVM> { Status = "Error" };
+            Response<TokenVM> response = new Response<TokenVM> { Status = _error };
             var validationResult = await _loginValidator.ValidateAsync(Model);
+            string InvalidUser = _httpContextAccessor.GetResourceString("messages.user.loginFail");
             if (!validationResult.IsValid)
                 response.Message = validationResult.ToErrorMessage();
             else
             {
                 var user = await _userManager.FindByNameAsync(Model.UserName);
                 if (user == null)
-                    response.Message.Add("Invalid User name or password");
+                    response.Message.Add(InvalidUser);
                 else if (!await _userManager.CheckPasswordAsync(user, Model.Password))
-                    response.Message.Add("Invalid User name or password");
+                    response.Message.Add(InvalidUser);
                 else
                 {
                     var roles = await _userManager.GetRolesAsync(user);
-                    response.Status = "Success";
+                    response.Status = _success;
                     response.Data = new TokenVM
                     {
                         Name = user.UserName,
@@ -67,7 +74,7 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
 
         public async Task<Response<string>> Register(RegisterVM model)
         {
-            Response<string> response = new Response<string> { Status = "Error" };
+            Response<string> response = new Response<string> { Status = _error };
             var validatorResult = await _registerVmValidator.ValidateAsync(model);
             if (!validatorResult.IsValid)
                 response.Message = validatorResult.ToErrorMessage();
@@ -77,13 +84,11 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
                 var userResult = await _userManager.CreateAsync(user, model.Password);
                 if (userResult.Succeeded)
                 {
-                    response.Status = "Success";
-                    response.Data = "User Created Successfully!";
+                    response.Status = _success;
+                    response.Data = _httpContextAccessor.GetResourceString("messages.user.created");
                 }
                 else
-                {
                     response.Message = userResult.Errors.Select(x => x.Description).ToList();
-                }
 
             }
             return response;
@@ -91,16 +96,16 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
 
         public async Task<Response<TokenVM>> GetTokenByRefresh(string refreshToken, long userId)
         {
-            Response<TokenVM> response = new Response<TokenVM> { Status = "Error" };
+            Response<TokenVM> response = new Response<TokenVM> { Status = _error };
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == userId);
             if (user == null)
-                response.Message.Add("Invalid user!");
+                response.Message.Add(_httpContextAccessor.GetResourceString("messages.user.invalid"));
             else if (!user.RefreshToken.Equals(refreshToken))
-                response.Message.Add("Invalid refresh token!");
+                response.Message.Add(_httpContextAccessor.GetResourceString("messages.token.invalid"));
             else
             {
                 var roles = await _userManager.GetRolesAsync(user);
-                response.Status = "Success";
+                response.Status = _success;
                 response.Data = new TokenVM
                 {
                     Name = user.UserName,
@@ -114,21 +119,21 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
 
         public async Task<Response<string>> ChangePassword(long userId, ChangePasswordVM model)
         {
-            Response<string> response = new Response<string> { Status = "Error" };
+            Response<string> response = new Response<string> { Status = _error };
             var validationResult = await _changePasswordVmValidator.ValidateAsync(model);
             if (validationResult.IsValid)
             {
                 var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == userId);
                 if (user == null)
-                    response.Message.Add("Invalid User!");
+                    response.Message.Add(_httpContextAccessor.GetResourceString("messages.user.invalid"));
                 else
                 {
                     var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        response.Status = "Success";
-                        response.Message.Add("Password changed successfully!");
-                        response.Data = "Password changed successfully!";
+                        response.Status = _success;
+                        response.Data = _httpContextAccessor.GetResourceString("messages.user.created");
+                        response.Message.Add(response.Data);
                     }
                     else
                         response.Message = result.Errors.Select(x => x.Description).ToList();
@@ -141,25 +146,25 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
 
         public async Task<Response<string>> GetForgotPasswordToken(string emailorPhone)
         {
-            Response<string> response = new Response<string> { Status = "Error" };
+            Response<string> response = new Response<string> { Status = _error };
             var user = await _userManager.FindByEmailAsync(emailorPhone);
             if (user == null)
                 user = await _userManager.Users.FirstOrDefaultAsync(x => x.PhoneNumber == emailorPhone);
             if (user == null)
-                response.Message.Add("User not found!");
+                response.Message.Add(_httpContextAccessor.GetResourceString("messages.user.notfound"));
             else
             {
                 await _userManager.GeneratePasswordResetTokenAsync(user);
-                response.Status = "Success";
-                response.Message.Add("Token genrated successfully");
-                response.Data = "Token genrated successfully";
+                response.Status = _success;
+                response.Data = _httpContextAccessor.GetResourceString("messages.token.genrated");
+                response.Message.Add(response.Data);
             }
             return response;
         }
 
         public async Task<Response<string>> ResetPassword(ResetPasswordVM model)
         {
-            Response<string> response = new Response<string> { Status = "Error" };
+            Response<string> response = new Response<string> { Status = _error };
             var validationResult = await _resetPasswordVMValidator.ValidateAsync(model);
             if (validationResult.IsValid)
             {
@@ -173,8 +178,8 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
                     var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
                     if (result.Succeeded)
                     {
-                        response.Status = "Success";
-                        response.Message.Add("Password reset successfully.");
+                        response.Status = _success;
+                        response.Message.Add(_httpContextAccessor.GetResourceString("messages.user.passworChanged"));
                     }
                     else
                         response.Message = result.Errors.Select(x => x.Description).ToList();

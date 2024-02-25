@@ -35,6 +35,14 @@
     ],
     "defaultValue": "net6.0",
     "replaces": "{TargetFramework}"
+    },
+    "secretKey":{
+      "type": "parameter",
+      "datatype":"string",
+      "displayName": "JWT Secret Key",
+      "defaultValue": "7hJp9KqE5zN2rT6xW9cL3vP0f",
+      "isRequired":true,
+      "replaces": "{jwtSecret}"
     }
   },
   "targets": {
