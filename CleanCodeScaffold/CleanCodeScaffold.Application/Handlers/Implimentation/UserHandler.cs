@@ -89,10 +89,10 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
             return response;
         }
 
-        public async Task<Response<TokenVM>> GetTokenByRefresh(string refreshToken, long userId)
+        public async Task<Response<TokenVM>> GetTokenByRefresh(string refreshToken)
         {
             Response<TokenVM> response = new Response<TokenVM> { Status = "Error" };
-            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.RefreshToken == refreshToken);
             if (user == null)
                 response.Message.Add("Invalid user!");
             else if (!user.RefreshToken.Equals(refreshToken))

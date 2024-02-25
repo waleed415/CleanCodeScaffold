@@ -1,0 +1,228 @@
+body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+    }
+
+    .footer,
+    .header {
+      height: 42mm;
+    }
+
+    .header {
+      top: 0;
+    }
+
+    .footer {
+      bottom: 0;
+    }
+
+    .header .content {
+      top: 45px;
+      margin-left: 42mm;
+      position: absolute;
+      width: 165mm;
+      height: 32mm;
+    }
+
+    .header .content .report-name {
+      color: #024164;
+      text-align: center;
+      float: left;
+      width: 75%;
+    }
+
+    .header .content .company-det {
+      color: #0AB8E6;
+      text-align: right;
+      float: left;
+      width: 22%;
+      height: 25mm;
+      margin-right: 18px;
+    }
+
+    .header .content .company-det img {
+      height: 25mm;
+    }
+
+    .header .line {
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      /* Increased thickness */
+      background-color: #024164;
+      top: 0;
+      /* Positioned at the top */
+    }
+
+    .header .second-line {
+      position: absolute;
+      width: 90%;
+      /* 25% less width */
+      height: 10px;
+      /* Same thickness as first line */
+      background-color: #0AB8E6;
+      /* New color */
+      top: 15px;
+      /* 5px space between the lines */
+      left: 0;
+      /* Center the line horizontally */
+      border-radius: 0 0 5px 0;
+      /* Rounded edge */
+      z-index: 1;
+    }
+
+    .header .third-line {
+      position: absolute;
+      width: 80%;
+      /* 25% less width */
+      height: 10px;
+      /* Same thickness as first line */
+      background-color: #4AE9FF;
+      /* New color */
+      top: 30px;
+      /* 5px space between the lines */
+      left: 0;
+      /* Center the line horizontally */
+      border-radius: 0 0 5px 0;
+      /* Rounded edge */
+      z-index: 1;
+    }
+
+    .header .triangle {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 42mm solid transparent;
+      /* 160px border */
+      border-right: 42mm solid #024164;
+      /* 160px border */
+      top: 0px;
+      /* Adjusted top position */
+      left: 0px;
+      /* Positioned in the left corner */
+      transform: rotate(180deg);
+      /* Rotate the triangle */
+    }
+
+    .footer .line {
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      /* Increased thickness */
+      background-color: #024164;
+      bottom: 0;
+      /* Positioned at the top */
+    }
+
+    .footer .second-line {
+      position: absolute;
+      width: 90%;
+      /* 25% less width */
+      height: 10px;
+      /* Same thickness as first line */
+      background-color: #0AB8E6;
+      /* New color */
+      bottom: 15px;
+      /* 5px space between the lines */
+      right: 0;
+      /* Center the line horizontally */
+      border-radius: 0 0 0 5px;
+      /* Rounded edge */
+      z-index: 1;
+    }
+
+    .footer .third-line {
+      position: absolute;
+      width: 80%;
+      /* 25% less width */
+      height: 10px;
+      /* Same thickness as first line */
+      background-color: #4AE9FF;
+      /* New color */
+      bottom: 30px;
+      /* 5px space between the lines */
+      right: 0;
+      /* Center the line horizontally */
+      border-radius: 0 0 0 5px;
+      /* Rounded edge */
+      z-index: 1;
+    }
+
+    .footer .pager {
+      position: absolute;
+      bottom: 45px;
+      /* 5px space between the lines */
+      right: 10px;
+      /* Center the line horizontally */
+      color: #4AE9FF;
+      text-align: right;
+      font-weight: bold;
+      z-index: 1;
+      font-size: x-small;
+    }
+
+    .footer .triangle {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 42mm solid transparent;
+      /* 160px border */
+      border-right: 42mm solid #024164;
+      /* 160px border */
+      bottom: 0px;
+      /* Adjusted top position */
+      right: 0px;
+      /* Positioned in the left corner */
+    }
+
+    .content {
+      height: 240mm;
+      margin-left: 40px;
+      margin-right: 40px;
+      overflow: hidden;
+    }
+
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .content .table-container {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 40px 0 rgba(0, 0, 0, .15);
+      -moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, .15);
+      -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, .15);
+      -o-box-shadow: 0 0 40px 0 rgba(0, 0, 0, .15);
+      -ms-box-shadow: 0 0 40px 0 rgba(0, 0, 0, .15);
+    }
+
+    .content table>thead>tr {
+      font-family: Lato-Bold;
+      font-size: 18px;
+      color: #fff;
+      background-color: #024164;
+    }
+
+    .content table th {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .content table td {
+      font-size: 15px;
+      color: gray;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    .content table tbody tr:nth-child(even) {
+      background-color: #f8f6ff;
+    }

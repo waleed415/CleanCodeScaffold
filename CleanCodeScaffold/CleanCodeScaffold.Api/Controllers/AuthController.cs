@@ -30,11 +30,10 @@ namespace CleanCodeScaffold.Api.Controllers
             var data = await _userHandler.Register(model);
             return data.ToResponse();
         }
-        [Authorize]
         [HttpGet("refresh")]
         public async Task<IActionResult> Refresh(string refreshToken)
         {
-            var data = await _userHandler.GetTokenByRefresh(refreshToken, User.GetId());
+            var data = await _userHandler.GetTokenByRefresh(refreshToken);
             return data.ToResponse();
         }
 

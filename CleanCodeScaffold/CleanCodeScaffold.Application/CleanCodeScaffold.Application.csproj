@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>{TargetFramework}</TargetFramework>
+	  <TargetFramework>net6.0</TargetFramework>
+	  <!--<TargetFramework>{TargetFramework}</TargetFramework>-->
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -25,6 +26,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.26" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+    <PackageReference Include="PuppeteerSharp" Version="16.0.0" />
   </ItemGroup>
 
   <ItemGroup>
