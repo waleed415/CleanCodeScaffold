@@ -1,22 +1,44 @@
 {
   "Serilog": {
-    "using": [ "Serilog.Sinks.Console", "Serilog.Sinks.Seq" ],
+    "using": [ "Serilog.Sinks.Console", "Serilog.Sinks.Seq", "Serilog.Sinks.MSSqlServer", "Serilog.Enrichers.ClientInfo" ],
     "MinimumLevel": {
       "Default": "Information",
       "Override": { "Microsoft" : "Information"}
     },
-    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
+    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId", "WithClientIp" ],
     "WriteTo": [
       {
         "Name": "Console"
       },
+      //#if(loggingType == "SEQ Server")
       {
         "Name": "Seq",
         "Args": {
           "serverUrl": "http://localhost:5341", // Replace with your Seq URL
           "apiKey": "eNNQxgjhCzh2Oyk6lOW3" // Add your API key here
         }
+      },
+      //#endif
+      //#if(loggingType=="File")
+      {
+        "Name": "File",
+        "Args": {
+          "path": "log.txt",
+          "rollingInterval": "Day",
+          "outputTemplate": "{NewLine}[{Level:u3}]{NewLine}{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}"
+        }
+      },
+      //#endif
+      //#if(loggingType=="Database")
+      {
+        "Name": "MSSqlServer",
+        "Args": {
+          "connectionString": "Data Source=CS-WAEED-REHMAN\\SQLEXPRESS;Initial Catalog=CleanCodeDB;Integrated Security=True;TrustServerCertificate=True",
+          "tableName": "Logs",
+          "autoCreateSqlTable": true
+        }
       }
+      //#endif
     ]
   }
 }

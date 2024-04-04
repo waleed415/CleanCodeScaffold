@@ -5,6 +5,7 @@ using CleanCodeScaffold.Application.Validators;
 using CleanCodeScaffold.Domain.Entities;
 using CleanCodeScaffold.Domain.Interfaces;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
 {
     public class WeatherHandler : BaseHandler<WeatherVM, Weather>, IWeatherHandler
     {
-        public WeatherHandler(IWeatherRepository repo, IValidator<WeatherVM> validator, FilterValidator<WeatherVM> filterValidator) : base(repo, WeatherMapper.Mapper, validator, filterValidator)
+        public WeatherHandler(IWeatherRepository repo, IValidator<WeatherVM> validator,
+            FilterValidator<WeatherVM> filterValidator, IHttpContextAccessor httpContextAccessor) 
+            : base(repo, WeatherMapper.Mapper, validator, filterValidator, httpContextAccessor)
         {
             
         }

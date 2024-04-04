@@ -35,15 +35,73 @@
     ],
     "defaultValue": "net6.0",
     "replaces": "{TargetFramework}"
+    },
+    "secretKey":{
+      "type": "parameter",
+      "datatype":"string",
+      "displayName": "JWT Secret Key",
+      "defaultValue": "7hJp9KqE5zN2rT6xW9cL3vP0f",
+      "isRequired":true,
+      "replaces": "{jwtSecret}"
+    },
+    "enableLogging": {
+      "type": "parameter",
+      "datatype": "bool",
+      "displayName": "Support Logging",
+      "default": false,
+      "description": "Enable logging in the project"
+    },
+    "loggingType":{
+      "type": "parameter",
+      "allowMultipleValues": true,
+      "isRequired":false,
+      "isEnabled":"(enableLogging)",
+      "datatype":"choice",
+      "choices": [
+         {"choice": "None"},
+         {"choice": "File"},
+         {"choice": "SEQ Server"},
+         {"choice": "Database"}
+        ],
+      "displayName": "Logging Method"
+    },
+    "seqUrl":{
+      "type": "parameter",
+      "datatype":"text",
+      "defaultValue": "http://localhost:5341",
+      "displayName": "SEQ URL",
+      "isEnabled":"loggingType == 'SEQ Server'",
+      "isRequired":false
+    },
+    "seqAPIKey":{
+      "type": "parameter",
+      "datatype":"text",
+      "displayName": "SEQ API Key",
+      "isEnabled":"loggingType == 'SEQ Server'",
+      "isRequired":false
+    },
+    "loggingDBConnection":{
+      "type": "parameter",
+      "datatype":"text",
+      "isEnabled":"loggingType == 'Database'",
+      "isRequired":false
     }
   },
+  "sources": [
+    {
+      "condition": "(!enableLogging)",
+      "exclude": [
+        "CleanCodeScaffold.Api/seri-log.json"
+      ]
+    }
+  ],
   "targets": {
     "api": {
       "type": "project",
       "name": "{{sourceName}}.Api",
       "sourceName": "src/{{sourceName}}.Api",
       "symbols": {
-        "namespace": "{{sourceName}}.Api",
+        "namespace": "{{sourceName}}.Api"
       },
       "language": "C#"
     },
