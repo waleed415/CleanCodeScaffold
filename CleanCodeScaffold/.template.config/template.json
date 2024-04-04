@@ -55,7 +55,6 @@
       "type": "parameter",
       "allowMultipleValues": true,
       "isRequired":false,
-      "isEnabled":"(enableLogging)",
       "datatype":"choice",
       "choices": [
          {"choice": "None"},
@@ -77,13 +76,11 @@
       "type": "parameter",
       "datatype":"text",
       "displayName": "SEQ API Key",
-      "isEnabled":"loggingType == 'SEQ Server'",
       "isRequired":false
     },
     "loggingDBConnection":{
       "type": "parameter",
       "datatype":"text",
-      "isEnabled":"loggingType == 'Database'",
       "isRequired":false
     }
   },
