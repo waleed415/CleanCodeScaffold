@@ -11,6 +11,7 @@
   },
   "sourceName": "CleanCodeScaffold",
   "preferNameDirectory": true,
+  "logo":"src/logo.png",
   "symbols": {
     "connectionString": {
       "type": "parameter",
