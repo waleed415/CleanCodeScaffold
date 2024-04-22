@@ -62,7 +62,9 @@ app.UseAuthorization();
 
 
 await app.ApplyPendingMigrations();
+#if (enableLogging)
 app.UseSerilogRequestLogging();
+#endif
 app.UseMiddleware<LocalizationMiddleware>();
 app.MapControllers();
 
