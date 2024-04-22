@@ -70,7 +70,6 @@
       "datatype":"text",
       "defaultValue": "http://localhost:5341",
       "displayName": "SEQ URL",
-      "isEnabled":"loggingType == 'SEQ Server'",
       "isRequired":false
     },
     "seqAPIKey":{
@@ -78,21 +77,8 @@
       "datatype":"text",
       "displayName": "SEQ API Key",
       "isRequired":false
-    },
-    "loggingDBConnection":{
-      "type": "parameter",
-      "datatype":"text",
-      "isRequired":false
     }
   },
-  "sources": [
-    {
-      "condition": "(!enableLogging)",
-      "exclude": [
-        "CleanCodeScaffold.Api/seri-log.json"
-      ]
-    }
-  ],
   "targets": {
     "api": {
       "type": "project",

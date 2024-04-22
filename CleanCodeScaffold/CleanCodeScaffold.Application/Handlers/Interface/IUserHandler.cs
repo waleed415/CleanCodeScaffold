@@ -10,7 +10,7 @@ namespace CleanCodeScaffold.Application.Handlers.Interface
     public interface IUserHandler
     {
         Task<Response<TokenVM>> GetToken(LoginVM Model);
-        Task<Response<TokenVM>> GetTokenByRefresh(string refreshToken, long userId);
+        Task<Response<TokenVM>> GetTokenByRefresh(string refreshToken);
         Task<Response<string>> Register(RegisterVM model);
         Task<Response<string>> ChangePassword(long userId, ChangePasswordVM model);
         Task<Response<string>> GetForgotPasswordToken(string emailorPhone);
