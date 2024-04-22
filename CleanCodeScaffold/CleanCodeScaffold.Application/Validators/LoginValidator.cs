@@ -1,5 +1,7 @@
 ﻿using CleanCodeScaffold.Application.Dtos;
+using CleanCodeScaffold.Application.Util;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,12 @@ namespace CleanCodeScaffold.Application.Validators
 {
     internal class LoginValidator : AbstractValidator<LoginVM>
     {
-        public LoginValidator()
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public LoginValidator(IHttpContextAccessor httpContextAccessor)
         {
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("User name is required.");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required.");
+            _httpContextAccessor = httpContextAccessor;
+            RuleFor(x => x.UserName).NotEmpty().WithMessage(_httpContextAccessor.GetResourceString("validations.required"));
+            RuleFor(x => x.Password).NotEmpty().WithMessage(_httpContextAccessor.GetResourceString("validations.required"));
         }
     }
 }

@@ -1,20 +1,20 @@
 ﻿using CleanCodeScaffold.Application.Dtos;
+using CleanCodeScaffold.Application.Util;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+
 
 namespace CleanCodeScaffold.Application.Validators
 {
     public class ResetPasswordValidator : AbstractValidator<ResetPasswordVM>
     {
-        public ResetPasswordValidator()
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ResetPasswordValidator(IHttpContextAccessor httpContextAccessor)
         {
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required.");
-            RuleFor(x => x.Token).NotEmpty().WithMessage("Token is required.");
-            RuleFor(x => x.EmailorPhone).NotEmpty().WithMessage("Email or Phone is required.");
+            _httpContextAccessor = httpContextAccessor;
+            RuleFor(x => x.Password).NotEmpty().WithMessage(_httpContextAccessor.GetResourceString("validations.required"));
+            RuleFor(x => x.Token).NotEmpty().WithMessage(_httpContextAccessor.GetResourceString("validations.required"));
+            RuleFor(x => x.EmailorPhone).NotEmpty().WithMessage(_httpContextAccessor.GetResourceString("validations.required"));
         }
     }
 }

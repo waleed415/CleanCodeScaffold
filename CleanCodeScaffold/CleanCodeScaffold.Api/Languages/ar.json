@@ -1,0 +1,34 @@
+{
+  "global": {
+    "status": {
+      "success": "نجاح",
+      "error": "خطأ"
+    },
+    "delete": "تم حذف الكيان بنجاح"
+  },
+  "validations": {
+    "required": "{PropertyName} مطلوب",
+    "email": {
+      "format": "{PropertyName} والبريد الإلكتروني غير صالح",
+      "registerd": "البريد الإلكتروني مسجل بالفعل"
+    },
+    "filter": {
+      "key": "{PropertyName} يجب أن يكون خاصية صالحة في الجهاز الظاهري",
+      "operator": "العامل '{0}' غير مدعوم",
+      "postOperator": "العامل البعدي '{0}' غير مدعوم"
+    }
+  },
+  "messages": {
+    "user": {
+      "invalid": "مستخدم غير صالح",
+      "loginFail": "اسم مستخدم أو كلمة مرور غير صالحة",
+      "created": "تم إنشاء المستخدم بنجاح!",
+      "passworChanged": "تم تغيير كلمة المرور بنجاح",
+      "notfound": "المستخدم غير موجود"
+    },
+    "token": {
+      "genrated": "تم إنشاء الرمز بنجاح",
+      "invalid": "الرمز غير صالح"
+    }
+  }
+}
