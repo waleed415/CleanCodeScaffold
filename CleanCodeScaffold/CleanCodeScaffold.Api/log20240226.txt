@@ -1,0 +1,107 @@
+
+ [INF]
+2024-02-26 11:12:26.270 +03:00
+ Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+
+
+ [INF]
+2024-02-26 11:12:26.428 +03:00
+ Executed DbCommand (79ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+
+
+ [INF]
+2024-02-26 11:12:26.437 +03:00
+ Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+
+
+ [INF]
+2024-02-26 11:12:26.440 +03:00
+ Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+
+
+ [INF]
+2024-02-26 11:12:26.468 +03:00
+ Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+
+
+ [INF]
+2024-02-26 11:12:26.502 +03:00
+ No migrations were applied. The database is already up to date.
+
+
+ [INF]
+2024-02-26 11:12:26.603 +03:00
+ User profile is available. Using 'C:\Users\waleed.rehaman\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+
+
+ [INF]
+2024-02-26 11:12:26.791 +03:00
+ Now listening on: https://localhost:7170
+
+
+ [INF]
+2024-02-26 11:12:26.792 +03:00
+ Now listening on: http://localhost:5125
+
+
+ [INF]
+2024-02-26 11:12:26.900 +03:00
+ Application started. Press Ctrl+C to shut down.
+
+
+ [INF]
+2024-02-26 11:12:26.902 +03:00
+ Hosting environment: Development
+
+
+ [INF]
+2024-02-26 11:12:26.903 +03:00
+ Content root path: D:\myCode\CleanCodeScaffold\CleanCodeScaffold.Api\
+
+
+ [INF]
+2024-02-26 11:12:29.087 +03:00
+ Request starting HTTP/2 GET https://localhost:7170/swagger/index.html - -
+
+
+ [INF]
+2024-02-26 11:12:29.234 +03:00
+ Request finished HTTP/2 GET https://localhost:7170/swagger/index.html - - - 200 - text/html;charset=utf-8 149.6600ms
+
+
+ [INF]
+2024-02-26 11:12:29.274 +03:00
+ Request starting HTTP/2 GET https://localhost:7170/_vs/browserLink - -
+
+
+ [INF]
+2024-02-26 11:12:29.274 +03:00
+ Request starting HTTP/2 GET https://localhost:7170/_framework/aspnetcore-browser-refresh.js - -
+
+
+ [INF]
+2024-02-26 11:12:29.282 +03:00
+ Request finished HTTP/2 GET https://localhost:7170/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 8.2274ms
+
+
+ [INF]
+2024-02-26 11:12:29.323 +03:00
+ Request finished HTTP/2 GET https://localhost:7170/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 49.2090ms
+
+
+ [INF]
+2024-02-26 11:12:29.362 +03:00
+ Request starting HTTP/2 GET https://localhost:7170/swagger/v1/swagger.json - -
+
+
+ [INF]
+2024-02-26 11:12:29.459 +03:00
+ Request finished HTTP/2 GET https://localhost:7170/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 97.0043ms
+

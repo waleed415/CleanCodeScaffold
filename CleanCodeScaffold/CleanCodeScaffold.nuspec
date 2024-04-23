@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>CleanCodeScaffold</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>Waleed</authors>
     <owners>Waleed Ur Rehman</owners>
     <license type="file">readme\license.txt</license>

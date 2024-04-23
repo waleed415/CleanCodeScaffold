@@ -5,13 +5,14 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-
+#if (enableLogging)
 builder.Host.UseSerilog((context, logConfigs) =>
 {
     logConfigs.ReadFrom.Configuration(new ConfigurationBuilder()
     .AddJsonFile("seri-log.json")
     .Build());
 });
+#endif
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -58,9 +59,13 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-await app.ApplyPendingMigrations();
-app.UseSerilogRequestLogging();
 
+
+await app.ApplyPendingMigrations();
+#if (enableLogging)
+app.UseSerilogRequestLogging();
+#endif
+app.UseMiddleware<LocalizationMiddleware>();
 app.MapControllers();
 
 app.Run();

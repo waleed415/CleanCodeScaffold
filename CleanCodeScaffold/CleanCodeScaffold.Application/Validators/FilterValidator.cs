@@ -1,5 +1,7 @@
 ﻿using CleanCodeScaffold.Application.Dtos;
+using CleanCodeScaffold.Application.Util;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,11 @@ namespace CleanCodeScaffold.Application.Validators
 {
     public class FilterValidator<T>  : AbstractValidator<IEnumerable<FilterVM>> where T : class
     {
-        public FilterValidator()
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public FilterValidator(IHttpContextAccessor httpContextAccessor)
         {
-            RuleForEach(filter => filter).Must(IsValidPropertyName).WithMessage("Key must be a valid property in VM.");
+            _httpContextAccessor = httpContextAccessor;
+            RuleForEach(filter => filter).Must(IsValidPropertyName).WithMessage(_httpContextAccessor.GetResourceString("validations.filter.key"));
         }
 
         private bool IsValidPropertyName(FilterVM filter)

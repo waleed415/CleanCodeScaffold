@@ -9,5 +9,6 @@ namespace CleanCodeScaffold.Application.Handlers.Interface
 {
     public interface IWeatherHandler : IBaseHandler<WeatherVM>
     {
+        Task<byte[]> GetReport();
     }
 }
