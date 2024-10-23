@@ -1,6 +1,10 @@
 # CleanCodeScaffold
 CleanCodeScaffold project is a Clean Code Architecture template designed for .NET Core 6 and 8. It incorporates essential components such as Identity Framework for user management, a Generic Repository for data access, and Serilog with Seq for robust logging. Ideal for building modular, maintainable, and scalable applications following best practices in software architecture.
 
+**Contributers**
+
+Contributers are always welcome. Want to contribute? Send me an email at Waleed.khan415@gmail.com or a WhatsApp message to +923154106410 +966543430024 to discuss how you can get involved!
+
 **Key Features**:
 
 **Clean Code Architecture**: Follows the Hexagonal (Ports and Adapters) Architecture pattern, separating core business logic from external concerns.
