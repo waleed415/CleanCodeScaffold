@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using CleanCodeScaffold.Application.Handlers.Interface;
-using CleanCodeScaffold.Application.Handlers.Implimentation;
+using CleanCodeScaffold.Application.Handlers.Implementation;
 using CleanCodeScaffold.Infrastructure.Util;
 using FluentValidation;
 using CleanCodeScaffold.Application.Dtos;

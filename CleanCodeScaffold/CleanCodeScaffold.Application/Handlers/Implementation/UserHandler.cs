@@ -14,7 +14,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace CleanCodeScaffold.Application.Handlers.Implimentation
+namespace CleanCodeScaffold.Application.Handlers.Implementation
 {
     public class UserHandler : IUserHandler
     {
