@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Http;
 
 
 
-namespace CleanCodeScaffold.Application.Handlers.Implimentation
+namespace CleanCodeScaffold.Application.Handlers.Implementation
 {
     public class BaseHandler<TVM, TModel> : IBaseHandler<TVM> where TVM : class where TModel : BaseEntity
     {
@@ -124,6 +124,34 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
             var map = internalAPI.FindTypeMapFor<TSrc, TDest>();
             var destProp = map.PropertyMaps.FirstOrDefault(x => x.SourceMember?.Name.ToLower().Equals(vmProperty.ToLower()) == true)?
                                 .DestinationMember?.Name;
+            if (destProp is null)
+            {
+                map = internalAPI.FindTypeMapFor<TDest, TSrc>();
+
+                var propMap = map.PropertyMaps.FirstOrDefault(x => x.DestinationMember?.Name.Equals(vmProperty, StringComparison.OrdinalIgnoreCase) == true);
+                if (propMap is not null)
+                {
+                    if (propMap.SourceMember is not null)
+                        destProp = propMap.SourceMember?.Name;
+                    else if (propMap.CustomMapExpression != null)
+                    {
+                        var expression = propMap.CustomMapExpression.ToString(); // Example: src => src.Tenant.Name
+
+                        // Extract the right side: "src.Tenant.Name"
+                        var parts = expression.Split("=>", StringSplitOptions.TrimEntries);
+                        if (parts.Length == 2)
+                        {
+                            var rightSide = parts[1].Trim();
+
+                            // Remove 'src.' prefix if present
+                            if (rightSide.StartsWith("src."))
+                                rightSide = rightSide.Substring(4);
+
+                            destProp = rightSide; // Example: Tenant.Name
+                        }
+                    }
+                }
+            }
             return destProp;
         }
 
@@ -134,8 +162,21 @@ namespace CleanCodeScaffold.Application.Handlers.Implimentation
             string? oldOperator = string.Empty;
             foreach (var filter in filters)
             {
-                var property = Expression.Property(parameter, GetDBModelPropertyByVMProperty<TVM, TModel>(filter.Key, _mapper.ConfigurationProvider));
-                var constant = Expression.Constant(Convert.ChangeType(filter.Value, property.Type));
+                ConstantExpression constant;
+                MemberExpression property = null;
+                string dbPropname = GetDBModelPropertyByVMProperty<TVM, TModel>(filter.Key, _mapper.ConfigurationProvider);
+                var dbProps = dbPropname.Split('.');
+                foreach (var item in dbProps)
+                {
+                    if (property is null)
+                        property = Expression.Property(parameter, item);
+                    else
+                        property = Expression.Property(property, item);
+                }
+                if (property.Type == typeof(DateTime) || property.Type == typeof(Nullable<DateTime>))
+                    constant = Expression.Constant(Convert.ChangeType(Convert.ToDateTime(filter.Value), property.Type));
+                else
+                    constant = Expression.Constant(Convert.ChangeType(filter.Value, property.Type));
                 var binaryExpression = GetBinaryExpression(property, constant, filter.Operator);
                 var filterPredicate = Expression.Lambda<Func<TModel, bool>>(binaryExpression, parameter).Body;
                 if (!string.IsNullOrEmpty(oldOperator))

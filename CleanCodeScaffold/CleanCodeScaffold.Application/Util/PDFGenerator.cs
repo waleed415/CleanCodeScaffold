@@ -1,5 +1,5 @@
 ﻿using CleanCodeScaffold.Application.Dtos.Configs;
-using CleanCodeScaffold.Application.Handlers.Implimentation;
+using CleanCodeScaffold.Application.Handlers.Implementation;
 using Microsoft.Extensions.Logging;
 using PuppeteerSharp;
 using PuppeteerSharp.Media;
