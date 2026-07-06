@@ -16,7 +16,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanCodeScaffold.Application.Handlers.Implimentation
+namespace CleanCodeScaffold.Application.Handlers.Implementation
 {
     public class WeatherHandler : BaseHandler<WeatherVM, Weather>, IWeatherHandler
     {

@@ -13,6 +13,24 @@
   "preferNameDirectory": true,
   "logo":"src/logo.png",
   "symbols": {
+    "httpPort": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+          "low": 5000,
+          "high": 6000
+      },
+      "replaces": "{httpPort}"
+    },
+    "httpsPort": {
+      "type": "generated",
+      "generator": "port",
+      "parameters": {
+        "low": 6001,
+        "high": 7000
+      },
+      "replaces": "{httpsPort}"
+    },
     "connectionString": {
       "type": "parameter",
       "datatype": "string",
@@ -32,11 +50,102 @@
       },
       {
         "choice": "net8.0"
+      },
+      {
+        "choice": "net10.0"
       }
     ],
-    "defaultValue": "net6.0",
+    "defaultValue": "net8.0",
     "replaces": "{TargetFramework}"
     },
+    "efCoreVersion": {
+      "type": "generated",
+      "generator": "switch",
+      "parameters": {
+        "evaluator": "C++",
+        "cases": [
+          {
+            "condition": "(framework == \"net6.0\")",
+            "value": "6.0.36"
+          },
+          {
+            "condition": "(framework == \"net8.0\")",
+            "value": "8.0.25"
+          },
+          {
+            "condition": "(framework == \"net10.0\")",
+            "value": "10.0.9"
+          }
+        ]
+      },
+      "replaces": "{efVersion}"
+    },
+    "swashbuckleVersion": {
+      "type": "generated",
+      "generator": "switch",
+      "parameters": {
+        "evaluator": "C++",
+        "cases": [
+          {
+            "condition": "(framework == \"net6.0\")",
+            "value": "6.2.3"
+          },
+          {
+            "condition": "(framework == \"net8.0\")",
+            "value": "6.4.0"
+          },
+          {
+            "condition": "(framework == \"net10.0\")",
+            "value": "6.5.0"
+          }
+        ]
+      },
+      "replaces": "{SwashbuckleVersion}"
+    },
+      "efToolVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "6.0.36"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "8.0.25"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "10.0.9"
+            }
+          ]
+        },
+        "replaces": "{efToolVersion}"
+      },
+      "autoMapperVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "12.0.1"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "13.0.1"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "16.1.1"
+            }
+          ]
+        },
+        "replaces": "{autoMapperVersion}"
+      },
     "secretKey":{
       "type": "parameter",
       "datatype":"string",

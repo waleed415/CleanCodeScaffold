@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,44 +47,35 @@ namespace CleanCodeScaffold.Application.Util
 
         public static string GetResourceString(this IHttpContextAccessor httpContextAccessor, string resourceString)
         {
-            return httpContextAccessor.HttpContext.Items.GetResource(resourceString);
+            var context = httpContextAccessor.HttpContext;
+            if (context == null)
+            {
+                return resourceString;
+            }
+
+            return context.Items.GetResource(resourceString);
         }
+
         private static string GetResource(this IDictionary<object, object> resourceDictnory, string key)
         {
-            IDictionary<string, object> data = null;
-            string resource = string.Empty;
+            var resources = resourceDictnory.TryGetValue("resources", out var currentResourceObj)
+                ? currentResourceObj as IReadOnlyDictionary<string, string>
+                : null;
+            var defaultResources = resourceDictnory.TryGetValue("defaultResources", out var defaultResourceObj)
+                ? defaultResourceObj as IReadOnlyDictionary<string, string>
+                : null;
 
-            if (resourceDictnory.ContainsKey("resources"))
-                data = (Dictionary<string, object>)resourceDictnory["resources"];
-            else
-                throw new Exception("No language resources found.");
-
-            if (key.Contains("."))
+            if (resources != null && resources.TryGetValue(key, out var localizedValue) && !string.IsNullOrWhiteSpace(localizedValue))
             {
-                resource = GetResourceFromObject(data, key);
+                return localizedValue;
             }
-            else
-                resource = resourceDictnory.ContainsKey(key) ? resourceDictnory[key]?.ToString() : string.Empty;
-            return resource;
-        }
 
-        private static string GetResourceFromObject(IDictionary<string, object> data, string key)
-        {
-            string resource = string.Empty;
-
-            var keys = key.Split(".");
-            string lastKey = keys[keys.Length - 1];
-            if (keys.Length > 0)
+            if (defaultResources != null && defaultResources.TryGetValue(key, out var defaultValue) && !string.IsNullOrWhiteSpace(defaultValue))
             {
-                IDictionary<string, object> obj = data;
-                for (int i = 0; i < keys.Length - 1; i++)
-                {
-                    string item = keys[i];
-                    obj = JsonConvert.DeserializeObject<Dictionary<string, object>>(obj[item].ToString());
-                }
-                resource = obj.ContainsKey(lastKey) ? obj[lastKey]?.ToString() : string.Empty;
+                return defaultValue;
             }
-            return resource;
+
+            return key;
         }
     }
 }
