@@ -67,7 +67,7 @@ namespace CleanCodeScaffold.Application.Handlers.Implementation
             return response;
         }
 
-        public virtual async Task<Response<PagerModel<TVM>>> GetAllAsync(int pageSize = 10, int currentPage = 1, IEnumerable<FilterVM> filters = null)
+        public virtual async Task<Response<PagerModel<TVM>>> GetAllAsync(int pageSize = 10, int currentPage = 1, IEnumerable<FilterVM>? filters = null)
         {
             Response<PagerModel<TVM>> response = new Response<PagerModel<TVM>>() { Status = _error };
             IQueryable<TModel> queryable;

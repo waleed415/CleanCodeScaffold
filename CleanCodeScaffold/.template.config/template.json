@@ -4,7 +4,7 @@
   "classifications": ["Web", "Api"],
   "name": "CleanCodeScaffold",
   "identity": "Clean.Code.Scaffold.Template",
-  "shortName": "Clean.Code.Scaffold",
+  "shortName": "CCScaffold",
   "tags": {
     "language": "C#",
     "type": "project"
@@ -145,6 +145,28 @@
           ]
         },
         "replaces": "{autoMapperVersion}"
+      },
+    "jwtBearerVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "6.0.36"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "8.0.28"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "10.0.9"
+            }
+          ]
+        },
+        "replaces": "{jwtBearerVersion}"
       },
     "secretKey":{
       "type": "parameter",
