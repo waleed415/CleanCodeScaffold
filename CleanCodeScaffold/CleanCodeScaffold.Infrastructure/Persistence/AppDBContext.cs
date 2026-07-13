@@ -27,6 +27,9 @@ namespace CleanCodeScaffold.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //#if(framework == "net10.0")
+            base.OnModelCreating(modelBuilder);
+            //#endif
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable(name: "User");
