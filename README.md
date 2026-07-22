@@ -1,10 +1,6 @@
 # CleanCodeScaffold
 CleanCodeScaffold project is a Clean Code Architecture template designed for .NET Core 6, 8 and 10. It incorporates essential components such as Identity Framework for user management, a Generic Repository for data access, and Serilog with Seq for robust logging. Ideal for building modular, maintainable, and scalable applications following best practices in software architecture.
 
-**Contributers**
-
-Contributers are always welcome. Want to contribute? Send me an email at Waleed.khan415@gmail.com or a WhatsApp message to +923154106410 +966543430024 to discuss how you can get involved!
-
 **Key Features**:
 
 **Clean Code Architecture**: Follows the Hexagonal (Ports and Adapters) Architecture pattern, separating core business logic from external concerns.
@@ -26,7 +22,9 @@ Choose Your Preferred Approach:
 Install the template using the NuGet package.  
     dotnet new -i CleanCodeScaffold  
 Create a new project with the installed template.  
-    dotnet new cleancodescaffold --interactive  
+    dotnet new CCScaffold -n [ProjectName] --framework [net10.0/net8.0/net6.0] --connectionString "[your-connection-string]" --secretKey "[replace-this-with-a-secure-long-random-jwt-secret]"  
+
+if you are chosing framework net10.0 then execute add migration command
 Run your project.  
 
 **Via Repository:**
@@ -38,6 +36,12 @@ Navigate to the template project within the repository.
 Install the template.  
     dotnet new -i .  
 Create new project using visual studio chose CleanCodeScaffold.  
+
+**Via Command**
+
+if you are using the VSCode then you can use the following command for creating the project 
+
+dotnet new CCScaffold -n [ProjectName] --framework [net10.0/net8.0/net6.0] --connectionString "[your-connection-string]" --secretKey "[replace-this-with-a-secure-long-random-jwt-secret]"
 
 **Contributing**:
 
