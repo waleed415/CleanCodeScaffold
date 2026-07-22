@@ -22,7 +22,9 @@ Choose Your Preferred Approach:
 Install the template using the NuGet package.  
     dotnet new -i CleanCodeScaffold  
 Create a new project with the installed template.  
-    dotnet new cleancodescaffold --interactive  
+    dotnet new CCScaffold -n [ProjectName] --framework [net10.0/net8.0/net6.0] --connectionString "[your-connection-string]" --secretKey "[replace-this-with-a-secure-long-random-jwt-secret]"  
+
+if you are chosing framework net10.0 then execute add migration command
 Run your project.  
 
 **Via Repository:**
@@ -34,6 +36,12 @@ Navigate to the template project within the repository.
 Install the template.  
     dotnet new -i .  
 Create new project using visual studio chose CleanCodeScaffold.  
+
+**Via Command**
+
+if you are using the VSCode then you can use the following command for creating the project 
+
+dotnet new CCScaffold -n [ProjectName] --framework [net10.0/net8.0/net6.0] --connectionString "[your-connection-string]" --secretKey "[replace-this-with-a-secure-long-random-jwt-secret]"
 
 **Contributing**:
 
