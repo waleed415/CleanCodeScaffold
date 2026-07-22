@@ -1,97 +1,337 @@
 # CleanCodeScaffold
-CleanCodeScaffold project is a Clean Code Architecture template designed for .NET Core 6, 8 and 10. It incorporates essential components such as Identity Framework for user management, a Generic Repository for data access, and Serilog with Seq for robust logging. Ideal for building modular, maintainable, and scalable applications following best practices in software architecture.
+
+A practical, production-oriented **.NET Clean Architecture template** for building secure, maintainable, and scalable business applications and APIs.
+
+CleanCodeScaffold follows **Hexagonal Architecture (Ports and Adapters)** and provides commonly required application features from the start—including authentication flows, generic CRUD, ViewModel-based search, validation, structured logging, and PDF report examples.
+
+It is designed for teams building enterprise APIs, ERP modules, billing systems, internal portals, integration platforms, and back-office applications without starting from an empty project structure.
+
+## Supported Frameworks
+
+- .NET 6
+- .NET 8
+- .NET 10
 
 ## Key Features
 
-- **Production-Ready Identity Module**
-   Skip the boilerplate. Includes fully implemented **User Registration, Login, Forgot Password, and Role Management** using ASP.NET Core Identity.
+- **Hexagonal / Clean Architecture**
+  - Follows the Ports and Adapters pattern.
+  - Separates core business logic from databases, frameworks, UI, and external services.
+  - Uses a modular structure with Presentation, Application, Domain, and Infrastructure layers.
 
-- **Hexagonal Architecture**  
-  Uses a Ports-and-Adapters approach to keep business logic independent of frameworks, databases, and external services.
+- **Ready-to-Use Identity Module**
+  - User registration
+  - User login
+  - Forgot-password flow
+  - User and role-management foundation
+  - Built using ASP.NET Core Identity
 
-- **Multi-Version .NET Support**  
-  Create projects targeting .NET 6, .NET 8, or .NET 10.
+- **Generic CRUD Operations**
+  - Reusable Create, Read, Update, and Delete implementation.
+  - Helps teams build standard business modules using consistent patterns.
 
-- **Generic CRUD and Search**  
-  Includes reusable CRUD operations and View Model-based generic search to speed up development of standard business modules.
+- **ViewModel-Based Generic Search**
+  - Reusable search and listing functionality based on View Models.
+  - Supports common filtering, paging, and data-listing requirements.
 
-- **Demo Module Included**  
-  Provides a working example that demonstrates how to structure entities, View Models, validation, mappings, services, repositories, and API endpoints.
+- **Demo CRUD Module**
+  - Includes working CRUD examples to demonstrate the recommended implementation approach.
 
-- **AutoMapper and FluentValidation**  
-  Uses AutoMapper for predictable object mapping and FluentValidation for clean, reusable request validation.
+- **PDF Report Generation Examples**
+  - Includes examples for generating PDF reports.
+  - Can be adapted for invoices, summaries, exports, and operational reports.
 
-- **Structured Logging and Observability**  
-  Uses Serilog and Seq to capture structured application logs for easier troubleshooting and monitoring.
+- **AutoMapper**
+  - Simplifies mapping between entities, DTOs, request models, and response models.
 
-- **PDF Reporting Examples**  
-  Includes examples for generating PDF reports that can be adapted for invoices, summaries, exports, and operational reports.
+- **FluentValidation**
+  - Keeps request validation clean, reusable, and separate from controller logic.
 
-- **No MediatR Dependency**  
-  Keeps application flow explicit and easy to follow through direct application services, while retaining separation of concerns and testability.
+- **Generic Repository Pattern**
+  - Provides a standardized data-access approach.
+  - Helps separate persistence concerns from application and domain logic.
 
-- **Extensible Layered Design**  
-  Organizes code into Presentation, Application, Domain, and Infrastructure layers to support long-term maintainability.
-**Getting Started**:
+- **Structured Logging and Observability**
+  - Uses Serilog for structured logging.
+  - Supports Seq for centralized log analysis, troubleshooting, and observability.
 
-Choose Your Preferred Approach:
+- **Dependency Injection**
+  - Uses built-in .NET dependency injection for loosely coupled and testable components.
 
-**Via NuGet Package:**
+- **No Mandatory MediatR Dependency**
+  - Uses explicit application services and direct request flow.
+  - Keeps the codebase easier to understand, debug, and maintain.
+  - Teams can add MediatR later if their application complexity requires it.
 
-Install the template using the NuGet package.  
-    dotnet new -i CleanCodeScaffold  
-Create a new project with the installed template.  
-    dotnet new CCScaffold -n [ProjectName] --framework [net10.0/net8.0/net6.0] --connectionString "[your-connection-string]" --secretKey "[replace-this-with-a-secure-long-random-jwt-secret]"  
+- **Modular and Testable Design**
+  - Designed with separation of concerns in mind.
+  - Supports unit and integration testing practices.
 
-if you are chosing framework net10.0 then execute add migration command
-Run your project.  
+## Architecture Overview
 
-**Via Repository:**
+CleanCodeScaffold follows Clean Architecture and Hexagonal Architecture principles.
 
-Clone the repository to your local machine.  
-    git clone https://github.com/waleed415/CleanCodeScaffold.git  
-Navigate to the template project within the repository.  
-    cd /CleanCodeScaffold  
-Install the template.  
-    dotnet new -i .  
-Create new project using visual studio chose CleanCodeScaffold.  
+```text
+CleanCodeScaffold
+│
+├── src
+│   │
+│   ├── CleanCodeScaffold.Application
+│   │   ├── Commands
+│   │   ├── Queries
+│   │   ├── Services
+│   │   ├── Mappers
+│   │   ├── Responses
+│   │   └── Authenticators
+│   │
+│   ├── CleanCodeScaffold.Domain
+│   │   ├── Entities
+│   │   ├── ValueObjects
+│   │   └── Interfaces
+│   │
+│   ├── CleanCodeScaffold.Infrastructure
+│   │   ├── Persistence
+│   │   ├── ExternalServices
+│   │   └── Messaging
+│   │
+│   └── CleanCodeScaffold.Api
+│       ├── Controllers
+│       ├── Util
+│       └── Program.cs
+│
+└── tools
+    └── build
+```
 
-**Via Command**
+### Layer Responsibilities
 
-if you are using the VSCode then you can use the following command for creating the project 
+| Layer | Responsibility |
+|---|---|
+| `CleanCodeScaffold.Api` | API endpoints, controllers, middleware, dependency registration, and HTTP concerns |
+| `CleanCodeScaffold.Application` | Business use cases, application services, commands, queries, mappings, validation, and response models |
+| `CleanCodeScaffold.Domain` | Core business entities, value objects, domain rules, and interfaces |
+| `CleanCodeScaffold.Infrastructure` | Persistence, repositories, Identity, external APIs, messaging, reporting, and framework-specific implementations |
 
-dotnet new CCScaffold -n [ProjectName] --framework [net10.0/net8.0/net6.0] --connectionString "[your-connection-string]" --secretKey "[replace-this-with-a-secure-long-random-jwt-secret]"
+## Getting Started
 
-**Contributing**:
+### Prerequisites
 
-Contributions are welcome! Feel free to fork this repository, open issues, and submit pull requests to help improve the CleanCodeScaffold project.
+Before starting, install:
 
-CleanCodeScaffold  
-│  
-├───src  
-│   │  
-│   ├───CleanCodeScaffold.Application         (Application Layer)  
-│   │   ├───Commands                         (Use Case Commands)  
-│   │   ├───Queries                          (Use Case Queries)  
-│   │   ├───Services                         (Application Services)  
-│   │   ├───Mappers                          (Data Mappers)  
-│   │   ├───Responses                         (Response Models)  
-│   │   └───Authenticators                   (Authentication Logic)  
-│   │  
-│   ├───CleanCodeScaffold.Domain             (Domain Layer)  
-│   │   ├───Entities                         (Domain Entities)  
-│   │   ├───ValueObjects                     (Domain Value Objects)  
-│   │   └───Interfaces                        (Domain Interfaces)  
-│   │  
-│   ├───CleanCodeScaffold.Infrastructure     (Infrastructure Layer)  
-│   │   ├───Persistence                      (Database Access, Repositories)  
-│   │   ├───ExternalServices                  (External APIs, Third-party Services)  
-│   │   └───Messaging                         (Message Brokers, Email Services)  
-│   │  
-│   └───CleanCodeScaffold.Api                (Presentation Layer - API)  
-│       ├───Controllers                      (API Endpoints)  
-│       ├───Util                              (Utility classes, helpers, etc.)  
-│       └───Program.cs                        (API Entry Point)  
-│  
-└───tools  
-    └───build   
+- .NET SDK 6, 8, or 10
+- A supported database server and connection string
+- Seq, if you want to use centralized structured logging
+
+## Install via NuGet
+
+Install the template:
+
+```bash
+dotnet new -i CleanCodeScaffold
+```
+
+Create a new project:
+
+```bash
+dotnet new CCScaffold -n YourProjectName --framework net8.0 --connectionString "your-connection-string" --secretKey "replace-this-with-a-secure-long-random-jwt-secret"
+```
+
+Example:
+
+```bash
+dotnet new CCScaffold -n BillingManagementApi --framework net8.0 --connectionString "Server=localhost;Database=BillingManagementDb;Trusted_Connection=True;TrustServerCertificate=True;" --secretKey "replace-this-with-a-secure-long-random-jwt-secret"
+```
+
+For .NET 10 projects, run the migration command after creating the project.
+
+To see all available options:
+
+```bash
+dotnet new CCScaffold --help
+```
+
+## Install from Repository
+
+Clone the repository:
+
+```bash
+git clone https://github.com/waleed415/CleanCodeScaffold.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd CleanCodeScaffold
+```
+
+Install the template locally:
+
+```bash
+dotnet new -i .
+```
+
+Create a new project:
+
+```bash
+dotnet new CCScaffold -n YourProjectName --framework net8.0 --connectionString "your-connection-string" --secretKey "replace-this-with-a-secure-long-random-jwt-secret"
+```
+
+## Running the Application
+
+After creating your project, update the required configuration values, including:
+
+- Database connection string
+- JWT secret key
+- Identity configuration
+- Logging and Seq configuration, if applicable
+
+Restore and run the project:
+
+```bash
+dotnet restore
+dotnet run
+```
+
+## Authentication and Identity Features
+
+CleanCodeScaffold includes a ready-to-use foundation for common account-management requirements:
+
+- User registration
+- User login
+- Forgot-password flow
+- User management
+- Role management
+- ASP.NET Core Identity integration
+
+This helps teams begin business development without spending initial project time rebuilding standard authentication functionality.
+
+## Generic CRUD and Search
+
+The template provides reusable patterns for common business operations:
+
+- Create records
+- Retrieve records by ID
+- Update records
+- Delete records
+- List records
+- Search and filter records
+- ViewModel-based response models
+- Generic CRUD implementation
+- Demo CRUD module for reference
+
+When creating a new business module, the recommended process is:
+
+1. Create a domain entity.
+2. Create request and response View Models.
+3. Configure AutoMapper mappings.
+4. Add FluentValidation rules.
+5. Implement application service logic.
+6. Add repository and persistence logic.
+7. Expose the module through API endpoints.
+
+## PDF Reporting
+
+CleanCodeScaffold includes PDF-report-generation examples that can be adapted for:
+
+- Invoices
+- Customer statements
+- Sales summaries
+- Operational reports
+- Exportable business documents
+- Printable management reports
+
+## Logging and Observability
+
+Structured logging is implemented using **Serilog**.
+
+The template also supports **Seq** for centralized logging and analysis, helping teams investigate:
+
+- API requests and responses
+- Application exceptions
+- Authentication events
+- Integration failures
+- Business-operation failures
+- Performance issues
+
+## Why No MediatR?
+
+CleanCodeScaffold does not require MediatR by default.
+
+The template uses direct application services to keep request flow explicit and easy to follow:
+
+```text
+Controller → Application Service → Domain / Repository → Response
+```
+
+This approach is useful for teams building business applications, enterprise APIs, and integration services where readability, debugging, and onboarding speed are priorities.
+
+MediatR can still be introduced later when a project has complex CQRS or event-driven requirements that benefit from a mediator pattern.
+
+## Recommended Use Cases
+
+CleanCodeScaffold is suitable for:
+
+- Enterprise Web APIs
+- ERP modules
+- Billing and invoicing systems
+- Finance and accounting applications
+- Internal business portals
+- CRM systems
+- Healthcare administration systems
+- Government and third-party integration services
+- SaaS back-office applications
+- Reporting and dashboard APIs
+- Inventory and order-management systems
+
+## Technology Stack
+
+- C#
+- ASP.NET Core
+- .NET 6, .NET 8, and .NET 10
+- Entity Framework Core
+- ASP.NET Core Identity
+- AutoMapper
+- FluentValidation
+- Serilog
+- Seq
+- Generic Repository Pattern
+- REST APIs
+- Clean Architecture
+- Hexagonal Architecture / Ports and Adapters
+
+## Roadmap
+
+Potential future improvements include:
+
+- Additional unit and integration test examples
+- Docker and Docker Compose setup
+- CI/CD pipeline examples
+- More demo business modules
+- Additional database-provider options
+- Caching and messaging examples
+- Enhanced API documentation
+- Expanded reporting examples
+- More authorization and security scenarios
+
+## Contributing
+
+Contributions, bug reports, feedback, and feature requests are welcome.
+
+To contribute:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Update relevant tests and documentation.
+5. Submit a pull request.
+
+For significant changes, please open an issue first to discuss the proposed approach.
+
+## Links
+
+- **GitHub Repository:** [CleanCodeScaffold](https://github.com/waleed415/CleanCodeScaffold)
+- **NuGet Package:** [CleanCodeScaffold](https://www.nuget.org/packages/CleanCodeScaffold)
+
+## License
+
+This project is available under the repository’s existing license.
