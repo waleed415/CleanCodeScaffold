@@ -1,18 +1,37 @@
 # CleanCodeScaffold
 CleanCodeScaffold project is a Clean Code Architecture template designed for .NET Core 6, 8 and 10. It incorporates essential components such as Identity Framework for user management, a Generic Repository for data access, and Serilog with Seq for robust logging. Ideal for building modular, maintainable, and scalable applications following best practices in software architecture.
 
-**Key Features**:
+## Key Features
 
-**Clean Code Architecture**: Follows the Hexagonal (Ports and Adapters) Architecture pattern, separating core business logic from external concerns.
+- **Production-Ready Identity Module**
+   Skip the boilerplate. Includes fully implemented **User Registration, Login, Forgot Password, and Role Management** using ASP.NET Core Identity.
 
-**Generic CRUD Operations**: Provides generic implementations for Create, Read, Update, and Delete operations, allowing you to focus on domain-specific logic.
+- **Hexagonal Architecture**  
+  Uses a Ports-and-Adapters approach to keep business logic independent of frameworks, databases, and external services.
 
-**Dependency Injection**: Utilizes .NET Core's built-in Dependency Injection to manage object lifetimes and facilitate loosely coupled components.
+- **Multi-Version .NET Support**  
+  Create projects targeting .NET 6, .NET 8, or .NET 10.
 
-**Modular Structure**: Organized into layers (Presentation, Application, Domain, and Infrastructure) for clear separation of concerns, making it easier to maintain and extend the application.
+- **Generic CRUD and Search**  
+  Includes reusable CRUD operations and View Model-based generic search to speed up development of standard business modules.
 
-**Testing Support**: Designed with testability in mind, allowing you to write unit tests and ensure the reliability of your codebase.
+- **Demo Module Included**  
+  Provides a working example that demonstrates how to structure entities, View Models, validation, mappings, services, repositories, and API endpoints.
 
+- **AutoMapper and FluentValidation**  
+  Uses AutoMapper for predictable object mapping and FluentValidation for clean, reusable request validation.
+
+- **Structured Logging and Observability**  
+  Uses Serilog and Seq to capture structured application logs for easier troubleshooting and monitoring.
+
+- **PDF Reporting Examples**  
+  Includes examples for generating PDF reports that can be adapted for invoices, summaries, exports, and operational reports.
+
+- **No MediatR Dependency**  
+  Keeps application flow explicit and easy to follow through direct application services, while retaining separation of concerns and testability.
+
+- **Extensible Layered Design**  
+  Organizes code into Presentation, Application, Domain, and Infrastructure layers to support long-term maintainability.
 **Getting Started**:
 
 Choose Your Preferred Approach:
