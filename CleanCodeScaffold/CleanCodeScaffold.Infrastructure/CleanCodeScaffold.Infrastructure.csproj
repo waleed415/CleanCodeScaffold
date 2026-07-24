@@ -17,8 +17,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="{efVersion}" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="{efVersion}" />
+    //#if(databaseProvider == "MS SQL Server")
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="{efVersion}" />
+    //#endif
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="{efToolVersion}">
+    //#if(databaseProvider == "PostgreSQL")
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="{PostgreSQLVersion}" />
+    //#endif
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
