@@ -16,9 +16,16 @@ namespace CleanCodeScaffold.Infrastructure.Util
     {
         public static void SetupInfrastructure(this IServiceCollection services, string connectionString)
         {
+            //#if(databaseProvider == "MS SQL Server")
             services.AddDbContext<AppDBContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly("CleanCodeScaffold.Infrastructure"))
             );
+            //#endif
+            //#if(databaseProvider == "PostgreSQL")
+            services.AddDbContext<AppDBContext>(options =>
+                options.UseNpgsql(connectionString, b => b.MigrationsAssembly("CleanCodeScaffold.Infrastructure"))
+            );
+            //#endif
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
             RepoInejctor(services);
         }
