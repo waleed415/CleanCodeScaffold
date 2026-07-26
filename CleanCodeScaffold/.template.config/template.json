@@ -205,6 +205,204 @@
         },
         "replaces": "{PostgreSQLVersion}"
       },
+       "SerilogNetCoreVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "6.1.0"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "8.0.1"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "10.0.0"
+            }
+          ]
+        },
+        "replaces": "{SerilogNetCoreVersion}"
+      },
+      "SerilogClientInfoVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "2.1.2"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "2.3.0"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "2.9.0"
+            }
+          ]
+        },
+        "replaces": "{SerilogClientInfoVersion}"
+      },
+      "SerilogEnvironmentVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "2.3.0"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "3.0.0"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "3.0.1"
+            }
+          ]
+        },
+        "replaces": "{SerilogEnvironmentVersion}"
+      },
+      "SerilogThreadVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "3.1.0"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "4.0.0"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "4.0.0"
+            }
+          ]
+        },
+        "replaces": "{SerilogThreadVersion}"
+      },
+      "SerilogHostingVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "5.0.1"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "8.0.0"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "10.0.0"
+            }
+          ]
+        },
+        "replaces": "{SerilogHostingVersion}"
+      },
+      "SerilogConfigurationVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "6.0.1"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "8.0.0"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "10.0.1"
+            }
+          ]
+        },
+        "replaces": "{SerilogConfigurationVersion}"
+      },
+      "SerilogConsoleVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "4.1.0"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "5.0.1"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "6.1.1"
+            }
+          ]
+        },
+        "replaces": "{SerilogConsoleVersion}"
+      },
+      "SerilogMSSqlServerVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "6.1.3"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "6.6.0"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "10.0.0"
+            }
+          ]
+        },
+        "replaces": "{SerilogMSSqlServerVersion}"
+      },
+      "SerilogSeqVersion": {
+        "type": "generated",
+        "generator": "switch",
+        "parameters": {
+          "evaluator": "C++",
+          "cases": [
+            {
+              "condition": "(framework == \"net6.0\")",
+              "value": "5.2.3"
+            },
+            {
+              "condition": "(framework == \"net8.0\")",
+              "value": "8.0.0"
+            },
+            {
+              "condition": "(framework == \"net10.0\")",
+              "value": "9.0.0"
+            }
+          ]
+        },
+        "replaces": "{SerilogSeqVersion}"
+      },
     "secretKey":{
       "type": "parameter",
       "datatype":"string",
