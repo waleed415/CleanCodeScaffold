@@ -89,7 +89,7 @@
 /CleanCodeScaffold/.vs/CleanCodeScaffold
 /CleanCodeScaffold/.vs/CopilotSnapshots/16003EB76E92B34B8160DC227646367E
 /CleanCodeScaffold/CleanCodeScaffold.1.0.4.nupkg
-/CleanCodeScaffold/.vscode
+
 .vs/
 **/bin/
 **/obj/
